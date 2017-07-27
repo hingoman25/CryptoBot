@@ -2,7 +2,7 @@
 <html ng-app="app">
 <head>
   <title>CryptoBot</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
   <script src="js/angular.js"></script>
 
 </head>
@@ -10,29 +10,40 @@
 <body>
   <h1>CryptoBot</h1>
   <div class="container" ng-controller="CryptoController as coin">
-    <form class="search-form">
-      <input
-        type="text"
-        class="search"
-        placeholder="Search Crypto"
-        ng-click="showSearch=true"
-        ng-change="coin.onSearch();"
-        ng-model="coin.searchedCoin">
+      <form class="search-form">
+          <input
+            type="text"
+            class="search"
+            placeholder="Search Crypto"
+            ng-change="coin.showSearch();"
+            ng-model="coin.searchedCoin">
 
-      <ul class="suggestions">
-          <li ng-show="showSearch"  ng-repeat="coins in coin.list">
-            <span>{{coins.name}} ({{coins.symbol}})</span>
-            <span>${{coins.price_usd}}</span></li>
-      </ul>
-    </form>
-
+          <ul class="suggestions">
+              <li ng-hide="coin.showSearch();" ng-repeat="coins in coin.list | filter:coin.searchedCoin">
+                  <span>{{coins.name}} ({{coins.symbol}})</span>
+                  <span>${{coins.price_usd}}</span>
+                  <span><button ng-click="coin.addToList(coins, $index);">Add</button></span>
+              </li>
+          </ul>
+      </form>
 
     <div class="list">
       <h2>Saved Coins</h2>
       <ul class="savedCoins">
-        <li></li>
+        <li ng-repeat="i in coin.savedCoins">
+          <span>{{i.name}} ({{i.symbol}})</span>
+          <span>${{i.price_usd}}</span>
+          <span class="price">$
+            <input
+              type="text"
+              class="add-price"
+              placeholder="Alert Price"
+              ng-submit="coin.setPrice();"
+              ng-model="coin.price">
+          </span>
+          <span><button ng-click="coin.removeCoin(i, $index);">-</button></span>
+        </li>
       </ul>
-      <!-- <button class="clearList">Clear List</button> -->
     </div>
   </div>
   <script src='js/app.js'></script>
