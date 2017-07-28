@@ -4,55 +4,35 @@
   <title>CryptoBot</title>
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-
 </head>
 
-<body>
+<body ng-controller="CryptoController as coin">
   <h1>CryptoBot</h1>
-  <div class="container" ng-controller="CryptoController as coin">
+  <div class="container">
       <form class="search-form">
           <input
             type="text"
             class="search"
             placeholder="Search Crypto"
-            ng-change="coin.showSearch();"
-            ng-model="coin.searchedCoin">
+            ng-model="coin.searchedCoin"
+            ng-change="coin.showSearch()">
 
           <ul class="suggestions">
-              <li ng-hide="coin.showSearch();" ng-repeat="coins in coin.list | filter:coin.searchedCoin">
+              <li ng-hide="coin.showSearch()" ng-repeat="coins in coin.list | filter:coin.searchedCoin">
                   <span>{{coins.name}} ({{coins.symbol}})</span>
                   <span>${{coins.price_usd}}</span>
-                  <span><button ng-click="coin.addToList(coins);">Add</button></span>
+                  <add-coin></add-coin>
               </li>
           </ul>
       </form>
       <coin-list></coin-list>
-
-
-      <!-- <div class="list">
-        <h2>Saved Coins</h2>
-        <ul class="savedCoins">
-          <li ng-repeat="i in coin.savedCoins">
-            <span>{{i.name}} ({{i.symbol}})</span>
-            <span>{{i.price_usd}}</span>
-            <span class="price">$
-              <input
-                type="text"
-                class="add-price"
-                placeholder="Alert Price"
-                ng-submit="coin.setPrice();"
-                ng-model="coin.price">
-            </span>
-            <span><button ng-click="coin.removeCoin(i, $index);">-</button></span>
-          </li>
-        </ul>
-      </div> -->
-
-
   </div>
+
   <script src='src/app.js'></script>
   <script src='src/crypto.controller.js'></script>
+  <script src='src/coinList.component.js'></script>
+  <script src='src/addCoin.component.js'></script>
   <script src='src/crypto.service.js'></script>
-  <script src='src/coinListView/coinList.component.js'></script>
 </body>
+
 <html>
