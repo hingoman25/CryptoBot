@@ -6,16 +6,14 @@
         controller: CoinListController,
         controllerAs: 'coin',
         templateUrl: 'src/coinList.html',
-        bindings: {
-          coinlist: '='
-        }
       });
 
     function CoinListController(CryptoService) {
       var coin = this;
+      coin.savedCoins = CryptoService.getSavedCoins();
 
-      coin.removeCoin = function(coin, index) {         //removes coins from the saved list
-          coin.coinlist.splice(index, 1);
+      coin.removeCoin = function(item, index) {     //removes coins from the saved list
+          coin.savedCoins.splice(index, 1);
       };
 
       coin.setPrice = function() {                    //adds the

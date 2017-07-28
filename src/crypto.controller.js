@@ -8,9 +8,9 @@ function CryptoController(CryptoService) {
   var coin = this;
   var list = [];
   coin.searchedCoin = '';
-  coin.savedCoins = [];
+  coin.savedCoins = CryptoService.getSavedCoins();
 
-  function getCrypto() {                      //pulls data from API
+  function getCrypto() {              //pulls data from API
     CryptoService
       .retrieve()
       .then(function(response) {
@@ -38,14 +38,11 @@ function CryptoController(CryptoService) {
       }
     }
     if(temp === 0) {
-      coin.savedCoins.push(results);
+      CryptoService.addSavedCoins(results);
+      // coin.savedCoins.push(results);
     }
   };
 
-
-  // coin.setPrice = function() {                    //adds the
-  //
-  // };
-
     getCrypto();
+
 }
