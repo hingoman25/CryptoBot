@@ -1,0 +1,42 @@
+<div class="container">
+  <button ng-click="coin.click()">{{coin.jank}}</button>
+    <form class="search-form">
+        <input
+          type="text"
+          class="search"
+          placeholder="Search Crypto"
+          ng-model="coin.searchedCoin"
+          ng-change="coin.showSearch()">
+
+        <ul class="suggestions">
+            <li ng-hide="coin.showSearch()" ng-repeat="coins in coin.list | filter:coin.searchedCoin">
+                <span>{{coins.name}} ({{coins.symbol}})</span>
+                <span>${{coins.price_usd}}</span>
+                <span><button                 ng-click="coin.addToList(coins);">Add</button></span>
+            </li>
+        </ul>
+    </form>
+    <coin-list></coin-list>
+</div>
+
+
+
+
+<!-- <div class="list">
+  <h2>Saved Coins</h2>
+  <ul class="savedCoins">
+    <li ng-repeat="i in coin.savedCoins">
+      <span>{{i.name}} ({{i.symbol}})</span>
+      <span>{{i.price_usd}}</span>
+      <span class="price">$
+        <input
+          type="text"
+          class="add-price"
+          placeholder="Alert Price"
+          ng-submit="coin.setPrice();"
+          ng-model="coin.price">
+      </span>
+      <span><button ng-click="coin.removeCoin(i, $index);">-</button></span>
+    </li>
+  </ul>
+</div> -->

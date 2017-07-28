@@ -21,17 +21,17 @@
               <li ng-hide="coin.showSearch()" ng-repeat="coins in coin.list | filter:coin.searchedCoin">
                   <span>{{coins.name}} ({{coins.symbol}})</span>
                   <span>${{coins.price_usd}}</span>
-                  <add-coin></add-coin>
+                  <span><button                 ng-click="coin.addToList(coins);">Add</button></span>
               </li>
           </ul>
       </form>
-      <coin-list></coin-list>
+      <coin-list coinlist=coin.savedCoins></coin-list>
   </div>
 
   <script src='src/app.js'></script>
   <script src='src/crypto.controller.js'></script>
   <script src='src/coinList.component.js'></script>
-  <script src='src/addCoin.component.js'></script>
+  <!-- <script src='src/addCoin.component.js'></script> -->
   <script src='src/crypto.service.js'></script>
 </body>
 
