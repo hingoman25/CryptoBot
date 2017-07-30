@@ -1,3 +1,4 @@
+
 (function(angular) {
   'use strict';
   angular
@@ -5,7 +6,7 @@
     .component('coinList', {
         controller: CoinListController,
         controllerAs: 'coin',
-        templateUrl: 'src/coinList.html',
+        templateUrl: 'src/coinList.html'
       });
 
     function CoinListController(CryptoService) {
