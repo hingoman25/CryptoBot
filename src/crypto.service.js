@@ -7,6 +7,7 @@
     function CryptoService($http) {
       var ctrl = this;
       var savedCoins = [];
+      var priceCoins = [];
 
       var API = "https://api.coinmarketcap.com/v1/ticker/";
 
@@ -22,6 +23,14 @@
 
       function getSavedCoins() {
         return savedCoins;
+      }
+
+      function addPriceCoins(data) {    //for coins with user price
+        priceCoins.push(data);
+      }
+
+      function getPriceCoins() {
+        return priceCoins;
       }
 
       return {

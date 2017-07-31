@@ -39,7 +39,6 @@ function CryptoController(CryptoService) {
     }
     if(temp === 0) {
       CryptoService.addSavedCoins(results);
-      // coin.savedCoins.push(results);
     }
   };
 

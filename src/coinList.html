@@ -1,15 +1,18 @@
 <div class="list">
   <h2>Saved Coins</h2>
+  <button ng-click="coin.click()">CLICK</button>
   <ul class="savedCoins">
     <li ng-repeat="i in coin.savedCoins">
       <span>{{i.name}} ({{i.symbol}})</span>
       <span>{{i.price_usd}}</span>
       <span class="price">$
         <input
-          type="text"
+          type="number"
           class="add-price"
           placeholder="Alert Price"
-          ng-model="coin.price">
+          ng-blur="coin.setPrice(price, $index)"
+          ng-change="coin.checkInt(price)"
+          ng-model="price">
       </span>
       <span><button ng-click="coin.removeCoin(i, $index);">-</button></span>
     </li>

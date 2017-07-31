@@ -13,13 +13,19 @@
       var coin = this;
       coin.savedCoins = CryptoService.getSavedCoins();
 
-      coin.removeCoin = function(item, index) {     //removes coins from the saved list
-          coin.savedCoins.splice(index, 1);
+      coin.removeCoin = function(item, i) {     //removes coins from the saved list
+          coin.savedCoins.splice(i, 1);
       };
 
-      coin.setPrice = function() {                    //adds the
 
+      coin.setPrice = function(price, i) {         //inserts user price into object of coin
+        var specIndex = coin.savedCoins[i];
+        specIndex.user_price = price;
+        CryptoService.addPriceCoins(coin.savedCoins);
       };
 
+      coin.click = function() {
+        console.log(x);
+      };
     }
 })(angular);
