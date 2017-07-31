@@ -26,11 +26,27 @@
           </ul>
       </form>
       <coin-list></coin-list>
+      <add-number></add-number>
   </div>
 
+  <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDAvH64iBhxaHWOwDzlqElK8wsLuGYg2sY",
+      authDomain: "cryptobot-19183.firebaseapp.com",
+      databaseURL: "https://cryptobot-19183.firebaseio.com",
+      projectId: "cryptobot-19183",
+      storageBucket: "",
+      messagingSenderId: "49504403700"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
   <script src='src/app.js'></script>
   <script src='src/crypto.controller.js'></script>
   <script src='src/coinList.component.js'></script>
+  <script src='src/addNumber.component.js'></script>
   <script src='src/crypto.service.js'></script>
 </body>
 

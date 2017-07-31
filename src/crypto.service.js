@@ -25,6 +25,7 @@
         return savedCoins;
       }
 
+
       function addPriceCoins(data) {    //for coins with user price
         priceCoins.push(data);
       }
@@ -36,7 +37,9 @@
       return {
         retrieve: retrieve,
         addSavedCoins: addSavedCoins,
-        getSavedCoins: getSavedCoins
+        getSavedCoins: getSavedCoins,
+        addPriceCoins: addPriceCoins,
+        getPriceCoins: getPriceCoins
       };
     }
 })(angular);
