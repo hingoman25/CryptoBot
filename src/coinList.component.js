@@ -16,6 +16,7 @@
 
       coin.removeCoin = function(item, i) {     //removes coins from the saved list
           coin.savedCoins.splice(i, 1);
+          coin.priceCoins.splice(i, 1);
       };
 
       coin.setPrice = function(price, i) {         //inserts user price into object of coin
@@ -24,21 +25,22 @@
         CryptoService.addPriceCoins(coin.savedCoins[i]);
       };
 
-      // coin.click = function() {
-      //   for(var i = 0; i < coin.savedCoins.length; i++) {
-      //     var actualPrice = parseFloat(coin.savedCoins[i].price_usd, 10);
-      //     var myPrice = coin.savedCoins[i].user_price;
-      //
-      //     if(actualPrice === myPrice) {
-      //       console.log("HOORAY");
-      //     } else {
-      //       console.log("BBOOOOO");
-      //     }
-      //   }
-      // };
-
       coin.click = function() {
+        for(var i = 0; i < coin.savedCoins.length; i++) {
+          var actualPrice = parseFloat(coin.savedCoins[i].price_usd, 10);
+          var myPrice = coin.savedCoins[i].user_price;
 
+          if(actualPrice === myPrice) {
+            console.log("HOORAY");
+          } else {
+            console.log("BBOOOOO");
+          }
+        }
       };
+
+      // coin.click = function() {
+      //   var x = CryptoService.getPriceCoins();
+      //   console.log(x);
+      // };
     }
 })(angular);
