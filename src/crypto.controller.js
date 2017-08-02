@@ -4,19 +4,27 @@
     .controller("CryptoController", CryptoController);
 })(angular);
 
-function CryptoController(CryptoService) {
+function CryptoController(CryptoService, $interval) {
   var coin = this;
   var list = [];
+  var results = [];
   coin.searchedCoin = '';
   coin.savedCoins = CryptoService.getSavedCoins();
 
-  function getCrypto() {              //pulls data from API
-    CryptoService
-      .retrieve()
-      .then(function(response) {
-          coin.list = response;
-          console.log(coin.list);
-      });
+  function getCrypto() {         //pulls data from API
+      CryptoService
+        .retrieve()
+        .then(function(response) {
+            coin.list = response;
+        });
+  }
+
+  function updateList() {
+      for(var i = 0; i < coin.list.length; i++) {
+        coin.list = coin.list;
+      }
+      console.log(coin.list);
+      return coin.list;
   }
 
   coin.showSearch = function() {
@@ -25,7 +33,7 @@ function CryptoController(CryptoService) {
 
   coin.addToList = function(coins, index) {
     var temp = 0;
-    var results = {
+    coin.results = {
       name: coins.name,
       price_usd: coins.price_usd,
       symbol: coins.symbol,
@@ -41,10 +49,13 @@ function CryptoController(CryptoService) {
     }
     if(temp === 0) {
       CryptoService.addSavedCoins(results);
-      console.log(results);
-    }
+        }
   };
 
-    getCrypto();
 
+  getCrypto();
+
+  $interval(function () {
+    getCrypto();
+    }, 300000);
 }
