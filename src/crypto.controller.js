@@ -15,6 +15,7 @@ function CryptoController(CryptoService) {
       .retrieve()
       .then(function(response) {
           coin.list = response;
+          console.log(coin.list);
       });
   }
 
@@ -22,12 +23,13 @@ function CryptoController(CryptoService) {
     return coin.searchedCoin === '';
   };
 
-  coin.addToList = function(coins) {
+  coin.addToList = function(coins, index) {
     var temp = 0;
     var results = {
       name: coins.name,
       price_usd: coins.price_usd,
-      symbol: coins.symbol
+      symbol: coins.symbol,
+      index: index
     };
     if(coin.savedCoins.length > 0) {
       for(var i = 0; i < coin.savedCoins.length; i++) {
@@ -39,6 +41,7 @@ function CryptoController(CryptoService) {
     }
     if(temp === 0) {
       CryptoService.addSavedCoins(results);
+      console.log(results);
     }
   };
 

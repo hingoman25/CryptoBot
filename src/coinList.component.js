@@ -14,6 +14,12 @@
       coin.savedCoins = CryptoService.getSavedCoins();
       coin.priceCoins = CryptoService.getPriceCoins();
 
+      CryptoService
+        .retrieve()
+        .then(function(response) {
+            coin.list = response;
+        });
+
       coin.removeCoin = function(item, i) {     //removes coins from the saved list
           coin.savedCoins.splice(i, 1);
           coin.priceCoins.splice(i, 1);

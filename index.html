@@ -22,7 +22,7 @@
               <li ng-hide="coin.showSearch()" ng-repeat="coins in coin.list | filter:coin.searchedCoin">
                   <span>{{coins.name}} ({{coins.symbol}})</span>
                   <span>${{coins.price_usd}}</span>
-                  <span><button ng-click="coin.addToList(coins);">Add</button></span>
+                  <span><button ng-click="coin.addToList(coins, $index)">Add</button></span>
               </li>
           </ul>
       </form>
